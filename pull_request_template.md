@@ -8,9 +8,9 @@
 <!--- Please describe how the problem is being addressed in this PR -->
 
 
-## Special links
+## Notes/ Special links
 
-<!--- Include links to relevant information such as Axosoft Tickets, API references and any other references -->
+<!--- Include notes or links to relevant information such as Axosoft Tickets, API references and any other references -->
 
 
 ## Checklist before requesting a review

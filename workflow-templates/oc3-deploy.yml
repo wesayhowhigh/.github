@@ -1,0 +1,19 @@
+name: OC3 - Lightsail - Deploy
+
+on:
+  push:
+    branches: [ main, develop, beta, staging ]
+
+# Avoid concurrent deployments to the same environment
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    uses: wesayhowhigh/github-actions/.github/workflows/oc3-lightsail-deploy.yml@main
+    with:
+      # Change this to match your AWS ECR repository name prefix (e.g., "my-project")
+      site_name: "REPLACE_WITH_SITE_NAME"
+      # php_version: "8.3" # Optional: defaults to 8.3
+    secrets: inherit

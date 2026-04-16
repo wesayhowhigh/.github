@@ -12,7 +12,7 @@ concurrency:
 jobs:
   deploy:
     uses: wesayhowhigh/github-actions/.github/workflows/oc3-lightsail-deploy.yml@main
-    with:
+    # with:
       # php_version: "8.1" # Only add this if you need to override 8.3
       # environment: "production" # Optional override; default derives from branch
     secrets: inherit

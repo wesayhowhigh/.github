@@ -1,0 +1,9 @@
+{
+  "name": "OC1.1 Lightsail Deployment",
+  "description": "JUMP Standard deployment for OctoberCMS v1.1 sites to AWS Lightsail. Includes DigiCert SSL fix and automated branch-to-env mapping.",
+  "iconName": "october",
+  "categories": [
+    "Deployment",
+    "Automation"
+  ]
+}

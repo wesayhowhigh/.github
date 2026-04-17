@@ -1,0 +1,44 @@
+name: OC1.0 - Lightsail - Deploy
+
+run-name: ${{ github.event_name == 'workflow_dispatch' && format('Manual deploy ({0}) from {1}', github.event.inputs.environment, github.ref_name) || format('Auto deploy from {0}', github.ref_name) }}
+
+on:
+  push:
+    branches: [ master, develop ]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Environment override (auto = derive from branch)"
+        required: true
+        type: choice
+        default: auto
+        options:
+          - auto
+          - production
+          - uat
+      confirm_environment:
+        description: "Safety check: repeat the environment value when overriding"
+        required: false
+        type: string
+        default: ""
+      dry_run:
+        description: "Build only, skip remote deployment"
+        required: true
+        type: boolean
+        default: false
+
+# Avoid concurrent deployments to the same environment
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    uses: wesayhowhigh/github-actions/.github/workflows/oc1x-lightsail-deploy.yml@main
+    with:
+      profile: oc1_0
+      environment: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.environment != 'auto' && github.event.inputs.environment || '' }}
+      confirm_environment: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.confirm_environment || '' }}
+      require_confirmation: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.environment != 'auto' }}
+      dry_run: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.dry_run == 'true' }}
+    secrets: inherit

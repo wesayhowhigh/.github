@@ -1,5 +1,5 @@
 {
-  "name": "OC3 Lightsail Deployment",
+  "name": "OC3/4 Lightsail Deployment",
   "description": "JUMP Standard deployment for OctoberCMS v3/v4 sites to AWS Lightsail. Includes DigiCert SSL fix and automated branch-to-env mapping.",
   "iconName": "october",
   "categories": [

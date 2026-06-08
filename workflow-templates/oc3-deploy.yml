@@ -1,4 +1,4 @@
-name: OC3 - Lightsail - Deploy
+name: OC3/4 - Lightsail - Deploy
 
 run-name: ${{ github.event_name == 'workflow_dispatch' && format('Manual deploy ({0}) from {1}', github.event.inputs.environment, github.ref_name) || format('Auto deploy from {0}', github.ref_name) }}
 

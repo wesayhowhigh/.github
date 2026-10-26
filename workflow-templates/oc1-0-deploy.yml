@@ -37,6 +37,8 @@ jobs:
     uses: wesayhowhigh/github-actions/.github/workflows/oc1x-lightsail-deploy.yml@main
     with:
       profile: oc1_0
+      # Set true only for Docker engines that cannot pull OCI manifests.
+      legacy_docker_manifest: false
       environment: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.environment != 'auto' && github.event.inputs.environment || '' }}
       confirm_environment: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.confirm_environment || '' }}
       require_confirmation: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.environment != 'auto' }}
